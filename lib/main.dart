@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:finamoonproject/repos/currency_api_client.dart';
 import 'package:flutter/material.dart';
 import 'index.dart';
