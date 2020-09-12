@@ -1,0 +1,4 @@
+#Sat Sep 12 10:46:40 MSK 2020
+base.0=/home/semenomin/Git/finamoonproject/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
