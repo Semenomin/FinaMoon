@@ -15,13 +15,20 @@ dependencies:
   flutter_neumorphic: ^3.0.1
   cupertino_icons: ^0.1.3
   http: ^0.12.0
-
+  hive: ^1.4.1+1
+  hive_flutter: ^0.3.0+2
+  select_dialog: ^1.2.1
+  flutter_dialogflow: ^0.1.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator: ^0.7.0+2
+  build_runner: ^1.8.1
 
 flutter:
   uses-material-design: true
   assets:
     - locales/EN_US.json
     - locales/RU.json
+    - assets/FinaMoon-7e886f3862f3.json
