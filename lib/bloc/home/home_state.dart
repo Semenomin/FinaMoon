@@ -9,14 +9,14 @@ abstract class HomeState extends Equatable {
 }
 
 class CurrencyPageState extends HomeState {
-  String title;
+  final String title;
   CurrencyPageState(this.title) : super(title);
   @override
   String toString() => 'UnHomeState';
 }
 
 class IncomePageState extends HomeState {
-  String title;
+  final String title;
   IncomePageState(this.title) : super(title);
   @override
   String toString() => 'IncomePageState';

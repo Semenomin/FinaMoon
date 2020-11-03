@@ -1,29 +1,30 @@
 import 'package:finamoonproject/model/index.dart';
+import 'package:finamoonproject/repos/currency_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:select_dialog/select_dialog.dart';
 
 // ignore: must_be_immutable
 class CurrencyCell extends StatefulWidget {
-  CurrencyCell({Key key, this.color, this.name, this.currency})
+  CurrencyCell({Key key, this.color, this.name})
       : super(key: key);
   Color color;
   String name;
-  Currency currency;
   @override
-  _CurrencyCellState createState() =>
-      _CurrencyCellState(color: color, name: name, currency: currency);
+  _CurrencyCellState createState() => _CurrencyCellState(
+        color: color,
+        name: name,
+      );
 }
 
 class _CurrencyCellState extends State<CurrencyCell> {
   Color _color = Colors.transparent;
   String _name;
-  Currency _currency;
 
-  _CurrencyCellState({Color color, String name, Currency currency}) {
+  _CurrencyCellState({Color color, String name}) {
     _color = color;
     _name = name;
-    _currency = currency;
   }
 
   @override
@@ -37,7 +38,9 @@ class _CurrencyCellState extends State<CurrencyCell> {
             child: Container(
               alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
                 child: TextFormField(
                   cursorColor: Colors.white12,
                   onChanged: (str) {
@@ -82,8 +85,12 @@ class _CurrencyCellState extends State<CurrencyCell> {
     );
   }
 
-  Future<String> buildShowModal(BuildContext context) {
-    //TODO getCurrencies
+  Future<String> buildShowModal(BuildContext context) async{
+    List<Currency> list = await CurrencyRepository.getAllCurrenciesFromHive();
+    List<String> listOfAbbreviations = List<String>();
+    for(Currency cur in list){
+      listOfAbbreviations.add(cur.currencyAbbreviation);
+    }
     return SelectDialog.showModal<String>(
       context,
       label: "Choose Currency",
@@ -91,7 +98,7 @@ class _CurrencyCellState extends State<CurrencyCell> {
       showSearchBox: true,
       selectedValue: _name,
       backgroundColor: Color.fromRGBO(102, 171, 0, 100),
-      items: List.generate(50, (index) => "Item $index"), //TODO generate list
+      items: listOfAbbreviations,
       onChange: (String selected) {
         setState(() {
           _name = selected;

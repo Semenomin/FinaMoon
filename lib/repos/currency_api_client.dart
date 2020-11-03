@@ -4,9 +4,9 @@ import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 class CurrencyApiClient {
-  static const baseUrl = 'https://openexchangerates.org/api/latest.json';
-  static const appId = '3861d8bbdc994542b5ef26fadf159471';
-  static const base = "USD";
+  static const _baseUrl = 'https://openexchangerates.org/api/latest.json';
+  static const _appId = '3861d8bbdc994542b5ef26fadf159471';
+  static const _base = "USD";
   final http.Client httpClient;
 
   CurrencyApiClient({
@@ -14,7 +14,7 @@ class CurrencyApiClient {
   }) : assert(httpClient != null);
 
   Future<List> getCurrencies(context) async {
-    const currencyUrl = "$baseUrl?app_id=$appId&base=$base";
+    const currencyUrl = "$_baseUrl?app_id=$_appId&base=$_base";
     final response = await http.get(currencyUrl);
     if (response.statusCode == 200) {
       try{
@@ -29,6 +29,19 @@ class CurrencyApiClient {
     return null;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Future<void> _showMyDialog(context) async {
   return showDialog<void>(
