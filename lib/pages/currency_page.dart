@@ -10,6 +10,8 @@ class CurrencyPage extends StatefulWidget {
 }
 
 class _CurrencyPageState extends State<CurrencyPage> {
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,20 +20,25 @@ class _CurrencyPageState extends State<CurrencyPage> {
         children: [
           CurrencyCell(
             name: "USD",
+            index: 0,
           ),
           CurrencyCell(
             name: "RUS",
             color: Colors.black12,
+            index: 1,
           ),
           CurrencyCell(
             name: "EUR",
+            index: 2,
           ),
           CurrencyCell(
             name: "GRI",
             color: Colors.black12,
+            index: 3,
           ),
           CurrencyCell(
             name: "LSD",
+            index: 4,
           ),
         ],
       ),

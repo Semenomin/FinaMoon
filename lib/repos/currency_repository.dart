@@ -9,9 +9,19 @@ class CurrencyRepository {
 
   void saveCurrenciesInHive(context) async {
     List<Currency> list = await apiClient.getCurrencies(context);
+    var listOfCur = <Currency>[];;
     var box = await Hive.openBox<Currency>('currenciesBox');
+    var boxList = await Hive.openBox<List<Currency>>('favoriteBox');
     for (Currency cur in list) {
+      if(boxList.isEmpty){
+        if(cur.currencyAbbreviation == "USD" || cur.currencyAbbreviation == "RUS" || cur.currencyAbbreviation == "EUR" || cur.currencyAbbreviation == "BLR" || cur.currencyAbbreviation == "AED"){
+          listOfCur.add(cur);
+        }
+      }
       box.put(cur.currencyAbbreviation, cur);
+    }
+    if(boxList.isEmpty){
+      boxList.put('favorite', listOfCur);
     }
   }
 

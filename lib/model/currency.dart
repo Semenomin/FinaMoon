@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:finamoonproject/repos/currency_repository.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 
 

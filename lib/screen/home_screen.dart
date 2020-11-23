@@ -24,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 1;
   bool _isExtended = false;
-  String _title = "CURRENCIES";
   Color white = Colors.white;
   @override
   Widget build(BuildContext context) {

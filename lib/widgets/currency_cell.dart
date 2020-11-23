@@ -1,30 +1,34 @@
 import 'package:finamoonproject/model/index.dart';
 import 'package:finamoonproject/repos/currency_repository.dart';
+import 'package:finamoonproject/repos/hive_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:select_dialog/select_dialog.dart';
 
+//TODO save abbreviations
 // ignore: must_be_immutable
 class CurrencyCell extends StatefulWidget {
-  CurrencyCell({Key key, this.color, this.name})
+  CurrencyCell({Key key, this.color, this.name,this.index})
       : super(key: key);
   Color color;
   String name;
+  int index;
   @override
   _CurrencyCellState createState() => _CurrencyCellState(
         color: color,
         name: name,
+        index: index
       );
 }
 
 class _CurrencyCellState extends State<CurrencyCell> {
   Color _color = Colors.transparent;
   String _name;
-
-  _CurrencyCellState({Color color, String name}) {
+  int _index;
+  _CurrencyCellState({Color color, String name,int index}) {
     _color = color;
     _name = name;
+    _index = index;
   }
 
   @override
@@ -44,7 +48,7 @@ class _CurrencyCellState extends State<CurrencyCell> {
                 child: TextFormField(
                   cursorColor: Colors.white12,
                   onChanged: (str) {
-                    //TODO getcurrnames;
+                    //TODO getcur
                   },
                   keyboardType: TextInputType.number,
                   style: TextStyle(
@@ -73,7 +77,7 @@ class _CurrencyCellState extends State<CurrencyCell> {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           child: Text(
-            _name, //TODO CurrencyAbreviation
+            _name,
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -100,6 +104,7 @@ class _CurrencyCellState extends State<CurrencyCell> {
       backgroundColor: Color.fromRGBO(102, 171, 0, 100),
       items: listOfAbbreviations,
       onChange: (String selected) {
+        HiveRepository.changeFavoriteCurrencies(_index, selected);
         setState(() {
           _name = selected;
         });
