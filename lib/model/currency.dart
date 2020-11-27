@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:finamoonproject/repos/currency_repository.dart';
+import 'package:finamoonproject/repos/hive_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
-
 
 class Currency {
   String currencyAbbreviation;
@@ -21,10 +22,11 @@ class Currency {
   Future<dynamic> castCurrency({dynamic value, String to, context}) async {
     try {
       double parcedValue = double.tryParse(value);
-      if(parcedValue == null){
+      if (parcedValue == null) {
         throw Exception("Invalid value in ${this.currencyAbbreviation} cell");
       }
-      Currency currencyTo = await CurrencyRepository.getCurrencyFromHive(to);
+      Currency currencyTo = await RepositoryProvider.of<HiveRepository>(context)
+          .getCurrencyFromHive(to);
       return (value * currencyTo.rate) / this.rate;
     } catch (ex) {
       print(ex);

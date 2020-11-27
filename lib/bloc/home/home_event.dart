@@ -15,10 +15,10 @@ class OpenCurrencyPageEvent extends HomeEvent {
   }
 }
 
-class OpenIncomePageEvent extends HomeEvent {
+class OpenWalletPageEvent extends HomeEvent {
   @override
   Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
-    yield IncomePageState("INCOMES");
+    yield WalletPageState("WALLETS");
   }
 }
 
@@ -38,5 +38,3 @@ class OpenSettingsScreenEvent extends HomeEvent {
     yield SettingsScreenState();
   }
 }
-
-

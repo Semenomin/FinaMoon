@@ -1,6 +1,7 @@
 import 'package:finamoonproject/bloc/home/index.dart';
 import 'package:finamoonproject/pages/currency_page.dart';
 import 'package:finamoonproject/pages/index.dart';
+import 'package:finamoonproject/repos/currency_repository.dart';
 import 'package:finamoonproject/screen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,7 +12,8 @@ List<NavigationRailDestination> destinations = [
   NavigationRailDestination(icon: Icon(Icons.menu), label: Text("MENU")),
   NavigationRailDestination(
       icon: Icon(Icons.money_off), label: Text("CURRENSIES")),
-  NavigationRailDestination(icon: Icon(Icons.menu), label: Text("Income")),
+  NavigationRailDestination(
+      icon: Icon(Icons.account_balance_wallet_rounded), label: Text("WALLETS")),
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +24,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    RepositoryProvider.of<CurrencyRepository>(context)
+        .saveCurrenciesInHive(context);
+  }
+
   int _selectedIndex = 1;
   bool _isExtended = false;
   Color white = Colors.white;
@@ -86,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 builder: (context, state) {
                               if (state is CurrencyPageState)
                                 return CurrencyPage();
-                              else if (state is IncomePageState)
+                              else if (state is WalletPageState)
                                 return IncomePage();
                               else
                                 return Container();
@@ -167,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
             break;
           case 2:
             {
-              BlocProvider.of<HomeBloc>(context).add(OpenIncomePageEvent());
+              BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
             }
             break;
 

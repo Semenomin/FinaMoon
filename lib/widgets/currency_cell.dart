@@ -3,29 +3,26 @@ import 'package:finamoonproject/repos/currency_repository.dart';
 import 'package:finamoonproject/repos/hive_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:select_dialog/select_dialog.dart';
 
 //TODO save abbreviations
 // ignore: must_be_immutable
 class CurrencyCell extends StatefulWidget {
-  CurrencyCell({Key key, this.color, this.name,this.index})
-      : super(key: key);
+  CurrencyCell({Key key, this.color, this.name, this.index}) : super(key: key);
   Color color;
   String name;
   int index;
   @override
-  _CurrencyCellState createState() => _CurrencyCellState(
-        color: color,
-        name: name,
-        index: index
-      );
+  _CurrencyCellState createState() =>
+      _CurrencyCellState(color: color, name: name, index: index);
 }
 
 class _CurrencyCellState extends State<CurrencyCell> {
   Color _color = Colors.transparent;
   String _name;
   int _index;
-  _CurrencyCellState({Color color, String name,int index}) {
+  _CurrencyCellState({Color color, String name, int index}) {
     _color = color;
     _name = name;
     _index = index;
@@ -45,18 +42,21 @@ class _CurrencyCellState extends State<CurrencyCell> {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
                 ),
-                child: TextFormField(
-                  cursorColor: Colors.white12,
-                  onChanged: (str) {
-                    //TODO getcur
-                  },
-                  keyboardType: TextInputType.number,
-                  style: TextStyle(
-                    fontSize: 62,
-                    color: Colors.white38,
-                  ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 5.0),
+                  child: TextFormField(
+                    cursorColor: Colors.white12,
+                    onChanged: (str) {
+                      //TODO getcur
+                    },
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(
+                      fontSize: 62,
+                      color: Colors.white38,
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
               ),
@@ -89,10 +89,11 @@ class _CurrencyCellState extends State<CurrencyCell> {
     );
   }
 
-  Future<String> buildShowModal(BuildContext context) async{
-    List<Currency> list = await CurrencyRepository.getAllCurrenciesFromHive();
+  Future<String> buildShowModal(BuildContext context) async {
+    List<Currency> list = await RepositoryProvider.of<HiveRepository>(context)
+        .getAllCurrenciesFromHive();
     List<String> listOfAbbreviations = List<String>();
-    for(Currency cur in list){
+    for (Currency cur in list) {
       listOfAbbreviations.add(cur.currencyAbbreviation);
     }
     return SelectDialog.showModal<String>(
@@ -104,7 +105,8 @@ class _CurrencyCellState extends State<CurrencyCell> {
       backgroundColor: Color.fromRGBO(102, 171, 0, 100),
       items: listOfAbbreviations,
       onChange: (String selected) {
-        HiveRepository.changeFavoriteCurrencies(_index, selected);
+        RepositoryProvider.of<HiveRepository>(context)
+            .changeFavoriteCurrencies(_index, selected);
         setState(() {
           _name = selected;
         });
