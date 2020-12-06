@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:finamoonproject/repos/currency_repository.dart';
+import 'package:finamoonproject/repos/hive_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 
 
@@ -24,7 +26,8 @@ class Currency {
       if(parcedValue == null){
         throw Exception("Invalid value in ${this.currencyAbbreviation} cell");
       }
-      Currency currencyTo = await CurrencyRepository.getCurrencyFromHive(to);
+      final hiveRepository = RepositoryProvider.of<HiveRepository>(context);
+      Currency currencyTo = await hiveRepository.getCurrency(to);
       return (value * currencyTo.rate) / this.rate;
     } catch (ex) {
       print(ex);

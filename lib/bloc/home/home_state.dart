@@ -12,15 +12,23 @@ class CurrencyPageState extends HomeState {
   final String title;
   CurrencyPageState(this.title) : super(title);
   @override
-  String toString() => 'UnHomeState';
+  String toString() => 'CurrencyPageState';
 }
 
-class IncomePageState extends HomeState {
+class WalletPageState extends HomeState{
   final String title;
-  IncomePageState(this.title) : super(title);
+  WalletPageState(this.title) : super(title);
   @override
-  String toString() => 'IncomePageState';
+  String toString() => 'WalletPageState';
 }
+
+class ChartsPageState extends HomeState{
+  final String title;
+  ChartsPageState(this.title) : super(title);
+  @override
+  String toString() => 'ChartsPageState';
+}
+
 
 class ChatScreenState extends HomeState {
   @override
@@ -31,13 +39,6 @@ class SettingsScreenState extends HomeState {
   @override
   String toString() => 'GoToSettingsScreen';
 }
-
-
-
-
-
-
-
 
 class ErrorHomeState extends HomeState {
   @override

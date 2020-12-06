@@ -134,6 +134,12 @@
       "languageVersion": "1.17"
     },
     {
+      "name": "cookie_jar",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cookie_jar-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.20"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.1.5",
       "packageUri": "lib/",
@@ -146,6 +152,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "custom_switch",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/custom_switch-0.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "dart_style",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/dart_style-1.3.8",
       "packageUri": "lib/",
@@ -156,6 +168,18 @@
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/dartx-0.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.6"
+    },
+    {
+      "name": "datetime_picker_formfield",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "dio",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/dio-2.0.22",
+      "packageUri": "lib/",
+      "languageVersion": "1.9"
     },
     {
       "name": "equatable",
@@ -200,6 +224,12 @@
       "languageVersion": "2.6"
     },
     {
+      "name": "flutter_colorpicker",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_colorpicker-0.2.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flutter_cupertino_localizations",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_cupertino_localizations-1.0.1",
       "packageUri": "lib/",
@@ -224,6 +254,24 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_screenutil",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-0.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "flutter_sequence_animation",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_sequence_animation-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "flutter_slidable",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_slidable-0.5.7",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -232,6 +280,18 @@
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-8.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "get_it",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/get_it-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -302,6 +362,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "jiffy",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/jiffy-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
       "name": "js",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.2",
       "packageUri": "lib/",
@@ -336,6 +402,12 @@
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/mime-0.9.7",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "month_picker_dialog",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/month_picker_dialog-0.3.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
     },
     {
       "name": "nested",
@@ -404,6 +476,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "pie_chart",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/pie_chart-3.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1",
       "packageUri": "lib/",
@@ -450,6 +528,12 @@
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.4+1",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "responsive_grid",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/responsive_grid-1.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "rxdart",
@@ -530,6 +614,18 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "sqflite",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.1+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "sqflite_common",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0-nullsafety",
       "packageUri": "lib/",
@@ -554,6 +650,18 @@
       "languageVersion": "2.10"
     },
     {
+      "name": "sweetalert",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/sweetalert-0.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0-nullsafety",
       "packageUri": "lib/",
@@ -576,6 +684,12 @@
       "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/timing-0.1.1+2",
       "packageUri": "lib/",
       "languageVersion": "2.2"
+    },
+    {
+      "name": "toast",
+      "rootUri": "file:///home/semenomin/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/toast-0.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
     },
     {
       "name": "typed_data",
@@ -626,7 +740,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-10-30T09:22:08.684035Z",
+  "generated": "2020-12-06T14:03:03.731934Z",
   "generator": "pub",
   "generatorVersion": "2.10.0-110.0.dev"
 }

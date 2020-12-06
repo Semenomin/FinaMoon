@@ -15,10 +15,17 @@ class OpenCurrencyPageEvent extends HomeEvent {
   }
 }
 
-class OpenIncomePageEvent extends HomeEvent {
+class OpenWalletPageEvent extends HomeEvent{
   @override
   Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
-    yield IncomePageState("INCOMES");
+    yield WalletPageState("BUDGET");
+  }
+}
+
+class OpenChartsPageEvent extends HomeEvent{
+  @override
+  Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
+    yield ChartsPageState("CHARTS");
   }
 }
 

@@ -1,6 +1,10 @@
 import 'package:finamoonproject/bloc/home/index.dart';
+import 'package:finamoonproject/pages/charts_page.dart';
 import 'package:finamoonproject/pages/currency_page.dart';
 import 'package:finamoonproject/pages/index.dart';
+import 'package:finamoonproject/pages/wallet_page.dart';
+import 'package:finamoonproject/repos/currency_repository.dart';
+import 'package:finamoonproject/repos/hive_repository.dart';
 import 'package:finamoonproject/screen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,8 +14,10 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 List<NavigationRailDestination> destinations = [
   NavigationRailDestination(icon: Icon(Icons.menu), label: Text("MENU")),
   NavigationRailDestination(
-      icon: Icon(Icons.money_off), label: Text("CURRENSIES")),
-  NavigationRailDestination(icon: Icon(Icons.menu), label: Text("Income")),
+      icon: Icon(Icons.account_balance_wallet), label: Text("BUDGET")),
+  NavigationRailDestination(
+      icon: Icon(Icons.compare_arrows), label: Text("CURRENSIES")),
+  NavigationRailDestination(icon: Icon(Icons.bar_chart), label: Text("CHARTS")),
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +31,21 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 1;
   bool _isExtended = false;
   Color white = Colors.white;
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    final hiveRepository = RepositoryProvider.of<HiveRepository>(context);
+    final currencyRepository =
+        RepositoryProvider.of<CurrencyRepository>(context);
+    hiveRepository.initOrUpdateCurrencies(
+        await currencyRepository.getCurrencies(context));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomeBloc, HomeState>(
@@ -84,12 +105,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(right: 20),
                             child: BlocBuilder<HomeBloc, HomeState>(
                                 builder: (context, state) {
-                              if (state is CurrencyPageState)
-                                return CurrencyPage();
-                              else if (state is IncomePageState)
-                                return IncomePage();
-                              else
-                                return Container();
+                              switch (state.runtimeType) {
+                                case CurrencyPageState:
+                                  return CurrencyPage();
+                                  break;
+                                case WalletPageState:
+                                  return BudgetPage();
+                                  break;
+                                case ChartsPageState:
+                                  return ChartsPage();
+                                  break;
+                                default:
+                                  return Container(
+                                      child: CircularProgressIndicator());
+                              }
                             }),
                           ),
                         ),
@@ -159,18 +188,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               break;
             }
-
           case 1:
-            {
-              BlocProvider.of<HomeBloc>(context).add(OpenCurrencyPageEvent());
-            }
+            BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
             break;
           case 2:
-            {
-              BlocProvider.of<HomeBloc>(context).add(OpenIncomePageEvent());
-            }
+            BlocProvider.of<HomeBloc>(context).add(OpenCurrencyPageEvent());
             break;
-
+          case 3:
+            BlocProvider.of<HomeBloc>(context).add(OpenChartsPageEvent());
+            break;
           default:
         }
         if (value != 0) {

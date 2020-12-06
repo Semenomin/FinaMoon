@@ -3,9 +3,9 @@ import 'package:finamoonproject/repos/currency_repository.dart';
 import 'package:finamoonproject/repos/hive_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:select_dialog/select_dialog.dart';
 
-//TODO save abbreviations
 // ignore: must_be_immutable
 class CurrencyCell extends StatefulWidget {
   CurrencyCell({Key key, this.color, this.name,this.index})
@@ -90,7 +90,8 @@ class _CurrencyCellState extends State<CurrencyCell> {
   }
 
   Future<String> buildShowModal(BuildContext context) async{
-    List<Currency> list = await CurrencyRepository.getAllCurrenciesFromHive();
+    final hiveRepository = RepositoryProvider.of<HiveRepository>(context);
+    List<Currency> list = await hiveRepository.getAllCurrencies();
     List<String> listOfAbbreviations = List<String>();
     for(Currency cur in list){
       listOfAbbreviations.add(cur.currencyAbbreviation);
@@ -104,7 +105,8 @@ class _CurrencyCellState extends State<CurrencyCell> {
       backgroundColor: Color.fromRGBO(102, 171, 0, 100),
       items: listOfAbbreviations,
       onChange: (String selected) {
-        HiveRepository.changeFavoriteCurrencies(_index, selected);
+        final hiveRepository = RepositoryProvider.of<HiveRepository>(context);
+        hiveRepository.changeFavoriteCurrencies(_index, selected);
         setState(() {
           _name = selected;
         });
