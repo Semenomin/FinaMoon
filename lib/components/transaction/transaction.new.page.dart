@@ -107,26 +107,15 @@ class TransactionNewPageState extends State<TransactionNewPage> {
   /// This builds the new transaction page UI
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 828, height: 1792)
-      ..init(context);
-    return Scaffold(
-      body: !submitting
-          ? bodyWidget(context)
-          : new Center(
-          child: new CircularProgressIndicator()
-      ),
-    );
+    return bodyWidget(context);
   }
 
   /// Body widget
   Widget bodyWidget(BuildContext context) {
     return Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Constants.bgColor,
-        padding: const EdgeInsets.only(top: 50.0),
+        padding: const EdgeInsets.only(top: 20.0),
         child: Stack(
-          children: <Widget>[
+          children: [
             Padding(
               padding: const EdgeInsets.all(0.0),
               child: Column(
@@ -161,7 +150,6 @@ class TransactionNewPageState extends State<TransactionNewPage> {
   /// Header widget
   Widget headerWidget({@required BuildContext context}) {
     return new Container(
-        padding: const EdgeInsets.all(0.0),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -172,13 +160,10 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                     /// Header text widget
                     Text(
                       'New Transaction',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(
-                        color: Color(0xff000000),
-                        fontSize: ScreenUtil(allowFontScaling: true).setSp(35),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.white
                       ),
                     ),
 
@@ -208,7 +193,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -247,8 +232,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -314,8 +298,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -369,8 +352,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -423,8 +405,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -488,8 +469,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       .display1
                       .copyWith(
                       color: Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   )
               ),
 
@@ -554,8 +534,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                           .display1
                           .copyWith(
                           color: Color(0xff000000),
-                          fontSize: ScreenUtil(allowFontScaling: true)
-                              .setSp(26)
+                          fontSize: 26
                       )
                   ),
                   CustomSwitch(
@@ -594,8 +573,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                       color: useWhiteForeground(const Color(0xff2c4260))
                           ? const Color(0xffffffff)
                           : const Color(0xff000000),
-                      fontSize: ScreenUtil(allowFontScaling: true)
-                          .setSp(26)
+                      fontSize: 26
                   ),
                 ),
               ),
@@ -625,7 +603,7 @@ class TransactionNewPageState extends State<TransactionNewPage> {
                 children: [
                   Text(cardTitle,
                     style: TextStyle(
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+                      fontSize: 20,
                       color:
                       cardTitle == selectedType ? Colors.white : Colors.grey.withOpacity(0.7),
                     )

@@ -154,9 +154,7 @@ class _PageState extends State<ChartsPage> {
                                     new Text((balance != null) ? balance : '0',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize:
-                                              ScreenUtil(allowFontScaling: true)
-                                                  .setSp(25),
+                                          fontSize: 25,
                                           color: Constants.balanceTxtColor,
                                         )),
                               ),
@@ -260,7 +258,7 @@ class _PageState extends State<ChartsPage> {
             ),
             tooltip: 'Calendar',
             color: Colors.white,
-            iconSize: ScreenUtil(allowFontScaling: true).setSp(35),
+            iconSize: 20,
             onPressed: () {
               showMonthPicker(
                       context: context,

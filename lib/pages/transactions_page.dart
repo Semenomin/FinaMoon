@@ -6,7 +6,6 @@ import 'package:finamoonproject/util/singletouch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
@@ -115,23 +114,12 @@ class PageState extends State<TransactionsPage> {
   /// Builds the transactions page UI
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 828, height: 1792)
-      ..init(context);
-    return Scaffold(
-      body: !submitting
-          ? bodyWidget(context)
-          : new Center(
-        child: new CircularProgressIndicator(),
-      ),
-    );
+    return bodyWidget(context);
   }
 
   /// Body widget
   Widget bodyWidget(BuildContext context) {
     return new Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Constants.bgColor,
         padding: const EdgeInsets.only(top: 50.0),
         child: new Stack(
           children: <Widget>[
@@ -140,28 +128,25 @@ class PageState extends State<TransactionsPage> {
               child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-
                   /// Build Header widget
                   new Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: headerWidget(context: context),
                   ),
-
                   /// Define a fixed height of size 10
                   SizedBox(height: 10.0),
-
                   /// Build Balance widget
                   new Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: new Card(
-                      color: Constants.balanceBgColor,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      color:  Color.fromRGBO(40, 40, 40, 100),
                       child: new ListTile(
                         dense: true,
                         title: new Text(
                             'Balance',
                             style: TextStyle(
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(25),
+                              fontSize: 15,
                               color: Constants.balanceTxtColor,
                             )
                         ),
@@ -169,20 +154,15 @@ class PageState extends State<TransactionsPage> {
                             (balance != null) ? balance : '0',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(35),
+                              fontSize: 20,
                               color: Constants.balanceTxtColor,
                             )
                         ),
                       ),
                     ),
                   ),
-
                   new SizedBox(height: 10.0),
-
-                  /// Build transactions widget
                   buildTransactions(context: context),
-
                 ],
               ),
             )
@@ -197,55 +177,42 @@ class PageState extends State<TransactionsPage> {
         padding: const EdgeInsets.all(0.0),
         child: new Row(
           children: <Widget>[
-
-
             new Expanded(
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-
-                    /// Header text, references to transactionPageTxt in util/const.dart
                     new Text(
                       Constants.transactionPageTxt,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .display1
-                          .copyWith(
-                        color: Color(0xff000000),
-                        fontSize: ScreenUtil(allowFontScaling: true).setSp(35),
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
                       ),
                     ),
-
                     new SizedBox(height: 5.0),
-
-                    /// Sub header text containing the current Month/Year
                     new RichText(
                       text: new TextSpan(
                         style: TextStyle(
-                          color: Color(0xff000000),
+                          fontSize: 15,
+                          color: Colors.white,
                         ),
                         children: <TextSpan>[
                           new TextSpan(
                             text: DateFormat.MMMM("en_US").format(selectedDate),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(24),
+                              fontSize: 15,
                             ),
                           ),
                           new TextSpan(
                             text: ', ',
                             style: TextStyle(
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(24),
+                              fontSize: 15,
                             ),
                           ),
                           new TextSpan(
                             text: DateFormat.y("en_US").format(selectedDate),
                             style: TextStyle(
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(24),
+                              fontSize: 15,
                             ),
                           ),
                         ],
@@ -264,14 +231,11 @@ class PageState extends State<TransactionsPage> {
                 new Container(
                   height: 35.0,
                   child: new IconButton(
-                    padding: const EdgeInsets.all(0.0),
-                    alignment: Alignment.centerRight,
                     icon: new Icon(FontAwesomeIcons.calendarAlt),
                     tooltip: 'Calendar',
-                    color: Color(0xff000000),
-                    iconSize: ScreenUtil(allowFontScaling: true).setSp(35),
+                    color: Colors.white,
+                    iconSize: 25,
                     onPressed: () {
-                      /// This shows a month picker dialog
                       showMonthPicker(
                           context: context,
                           lastDate: DateTime(DateTime
@@ -305,13 +269,9 @@ class PageState extends State<TransactionsPage> {
     return new Flexible(
         child: new Container(
           child: new FutureBuilder<List<Transactions>>(
-            /// This calls the method fetchTransactionsFromDatabase()
-            /// and builds the list of transactions
             future: fetchTransactionsFromDatabase(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                /// SingleTouchRecognizerWidget disables multi touch
-                /// References to util/singletouch.dart
                 return new SingleTouchRecognizerWidget(
                     child: new ListView.builder(
                         padding: const EdgeInsets.all(0.0),
@@ -363,7 +323,7 @@ class PageState extends State<TransactionsPage> {
                   textAlign: TextAlign.start,
                   text: new TextSpan(
                     style: TextStyle(
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+                      fontSize: 20,
                       color: Color(0xff000000),
                     ),
                     children: <TextSpan>[
@@ -383,7 +343,7 @@ class PageState extends State<TransactionsPage> {
                   textAlign: TextAlign.end,
                   text: new TextSpan(
                     style: TextStyle(
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+                      fontSize: 20,
                       color: txColor,
                     ),
                     children: <TextSpan>[

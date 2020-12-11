@@ -1,7 +1,5 @@
-import 'package:finamoonproject/components/options_view.dart';
 import 'package:finamoonproject/components/transaction/transaction.class.dart';
 import 'package:finamoonproject/components/transaction/transaction.new.page.dart';
-import 'package:finamoonproject/pages/charts_page.dart';
 import 'package:finamoonproject/pages/transactions_page.dart';
 import 'package:finamoonproject/style/decorations.dart';
 import 'package:finamoonproject/util/categories.dart';
@@ -11,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,28 +38,29 @@ class PageState extends State<BudgetPage> {
 
   /// This method converts a number into currency format with two decimals
   String _numberFormat(value) {
-    return NumberFormat.currency(name: _getCurrency(), decimalDigits: 2).format(
-        value).toString();
+    return NumberFormat.currency(name: _getCurrency(), decimalDigits: 2)
+        .format(value)
+        .toString();
   }
 
   /// This method converts a type to its colors
   /// Income, Expense, Saving colors are in util/const.dart
-  Color _switchType(type){
+  Color _switchType(type) {
     Color color;
-    switch(type) {
+    switch (type) {
       case "Income":
         {
-          color = Constants.incomeBgColor;
+          color = Colors.white;
         }
         break;
       case "Expense":
         {
-          color = Constants.expenseBgColor;
+          color = Colors.white;
         }
         break;
       case "Saving":
         {
-          color = Constants.savingBgColor;
+          color = Colors.white;
         }
         break;
       default:
@@ -97,8 +95,8 @@ class PageState extends State<BudgetPage> {
       totalIncome = _numberFormat(totals[0]['income']);
       totalExpenses = _numberFormat(totals[0]['expenses']);
       totalSavings = _numberFormat(totals[0]['savings']);
-      totalBalance = _numberFormat(totals[0]['income'] -
-          (totals[0]['expenses'] + totals[0]['savings']) );
+      totalBalance = _numberFormat(
+          totals[0]['income'] - (totals[0]['expenses'] + totals[0]['savings']));
     });
     return totals;
   }
@@ -106,8 +104,7 @@ class PageState extends State<BudgetPage> {
   /// This method gets the current month's transactions from database
   Future<List<Transactions>> fetchTransactionsFromDatabase() async {
     var dbHelper = SqliteRepository();
-    Future<List<Transactions>> finances = dbHelper.getTransactions(
-        initialDate);
+    Future<List<Transactions>> finances = dbHelper.getTransactions(initialDate);
     return finances;
   }
 
@@ -133,20 +130,42 @@ class PageState extends State<BudgetPage> {
     super.initState();
 
     /// This forces the orientation to be portrait up only
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     _initPreferences();
   }
 
-  /// This builds the home page UI with a bottom
   /// Navigation Bar and a floating action button
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: Decorations.buildBoxDecoration(),
-      child:  bodyWidget(context),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: PageView(children: [
+        PageView(
+            scrollDirection: Axis.vertical,
+            children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: Container(
+              decoration: Decorations.buildBoxDecoration(),
+              child: bodyWidget(context),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 5),
+            child: Container(
+              decoration: Decorations.buildBoxDecoration(),
+              child: TransactionNewPage(),
+            ),
+          ),
+        ]),
+        Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Container(
+              decoration: Decorations.buildBoxDecoration(),
+              child: TransactionsPage()),
+        )
+      ]),
     );
   }
 
@@ -154,47 +173,42 @@ class PageState extends State<BudgetPage> {
   Widget bodyWidget(BuildContext context) {
     return new Container(
         padding: const EdgeInsets.only(top: 20.0),
-        child: new Stack(
+        child: new Stack(children: <Widget>[
+          new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-
-                  /// Build Header widget
-                  new Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: headerWidget(context: context),
-                  ),
-                  /// Define a fixed height of size 10
-                  new SizedBox(height:10.0),
-
-                  /// Build Overview widget
-                  new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: buildOverview(context: context),
-                  ),
-                  new SizedBox(height: 10.0),
-
-                  /// Build latest transactions list
-                  new Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: new Text(
-                      'Latest Transactions',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20
-                      ),
-                    ),
-                  ),
-                  new SizedBox(height: 5.0),
-                  buildTransactions(context: context),
-
-                ],
+              /// Build Header widget
+              new Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: headerWidget(context: context),
               ),
-            ]
-        )
-    );
+
+              /// Define a fixed height of size 10
+              new SizedBox(height: 10.0),
+
+              /// Build Overview widget
+              new Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: buildOverview(context: context),
+              ),
+              new SizedBox(height: 10.0),
+
+              /// Build latest transactions list
+              new Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: new Text(
+                  'Latest Transactions',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+              ),
+              new SizedBox(height: 5.0),
+              buildTransactions(context: context),
+            ],
+          ),
+        ]));
   }
 
   /// Header widget
@@ -230,9 +244,8 @@ class PageState extends State<BudgetPage> {
   Widget buildOverview({@required BuildContext context}) {
     return new Container(
         child: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
           /// Build Balance widget, Change colors in util/const.dart
           overviewWidget(
               context: context,
@@ -255,36 +268,29 @@ class PageState extends State<BudgetPage> {
               txColor: Constants.expenseTxtColor),
 
           /// Build Savings widget, Change colors in util/const.dart
-          overviewWidget(context: context,
+          overviewWidget(
+              context: context,
               type: 'Savings',
               total: totalSavings.toString(),
               txColor: Constants.savingTxtColor),
-        ])
-    );
+        ]));
   }
 
   /// Single overview widget
   Widget overviewWidget(
-      {@required BuildContext context, String type, String total, Color txColor}) {
-    return new Card (
+      {@required BuildContext context,
+      String type,
+      String total,
+      Color txColor}) {
+    return new Card(
       color: Color.fromRGBO(40, 40, 40, 100),
       child: new ListTile(
         dense: true,
-        title: new Text(
-            '$type',
+        title:
+            new Text('$type', style: TextStyle(fontSize: 12.0, color: txColor)),
+        subtitle: new Text('$total',
             style: TextStyle(
-                fontSize: 12.0,
-                color: txColor
-            )
-        ),
-        subtitle: new Text(
-            '$total',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14.0,
-                color: txColor
-            )
-        ),
+                fontWeight: FontWeight.bold, fontSize: 14.0, color: txColor)),
         //onTap: () {}
       ),
     );
@@ -294,57 +300,62 @@ class PageState extends State<BudgetPage> {
   Widget buildTransactions({@required BuildContext context}) {
     return new Flexible(
         child: new Container(
-          child: new FutureBuilder<List<Transactions>>(
-
-            /// This calls the method fetchTransactionsFromDatabase()
-            /// and builds the list of transactions
-            future: fetchTransactionsFromDatabase(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return new ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            transactionsWidget(
-                              context: context,
-                              transactionId: snapshot.data[index].transactionId,
-                              type: snapshot.data[index].type,
-                              name: snapshot.data[index].name,
-                              date: snapshot.data[index].transactionDate,
-                              amount: _numberFormat(snapshot.data[index].amount),
-                              textColor: Colors.white60,
-                            ),
-                          ]);
-                    });
-              } else if (snapshot.hasError) {
-                return new Text("${snapshot.error}");
-              }
-              return new Container(alignment: AlignmentDirectional.center,
-                child: new CircularProgressIndicator(),);
-            },
-          ),
-        )
-    );
+      child: new FutureBuilder<List<Transactions>>(
+        /// This calls the method fetchTransactionsFromDatabase()
+        /// and builds the list of transactions
+        future: fetchTransactionsFromDatabase(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return new ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        transactionsWidget(
+                          context: context,
+                          transactionId: snapshot.data[index].transactionId,
+                          type: snapshot.data[index].type,
+                          name: snapshot.data[index].name,
+                          date: snapshot.data[index].transactionDate,
+                          amount: _numberFormat(snapshot.data[index].amount),
+                          textColor: Colors.white60,
+                        ),
+                      ]);
+                });
+          } else if (snapshot.hasError) {
+            return new Text("${snapshot.error}");
+          }
+          return new Container(
+            alignment: AlignmentDirectional.center,
+            child: new CircularProgressIndicator(),
+          );
+        },
+      ),
+    ));
   }
 
   /// Single transaction widget
   Widget transactionsWidget(
-      {@required BuildContext context, int transactionId, String type,
-        String name, String date, String amount, Color textColor}) {
+      {@required BuildContext context,
+      int transactionId,
+      String type,
+      String name,
+      String date,
+      String amount,
+      Color textColor}) {
     Color txColor = _switchType(type);
     return new ListTile(
-        contentPadding: new EdgeInsets.symmetric(
-            horizontal: 4.0, vertical: 0.0),
+        contentPadding:
+            new EdgeInsets.symmetric(horizontal: 4.0, vertical: 0.0),
         dense: true,
         title: new RichText(
           textAlign: TextAlign.start,
           text: new TextSpan(
             style: TextStyle(
-              fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+              fontSize: 13,
               color: Color.fromRGBO(40, 40, 40, 100),
             ),
             children: <TextSpan>[
@@ -363,7 +374,7 @@ class PageState extends State<BudgetPage> {
           textAlign: TextAlign.end,
           text: new TextSpan(
             style: TextStyle(
-              fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+              fontSize: 15,
               color: txColor,
             ),
             children: <TextSpan>[
@@ -375,7 +386,6 @@ class PageState extends State<BudgetPage> {
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

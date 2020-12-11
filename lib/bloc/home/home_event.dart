@@ -29,6 +29,8 @@ class OpenChartsPageEvent extends HomeEvent{
   }
 }
 
+
+
 class OpenChatScreenEvent extends HomeEvent {
   final HomeState state;
   OpenChatScreenEvent({this.state});
