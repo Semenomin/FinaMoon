@@ -3,7 +3,6 @@ import 'package:finamoonproject/repos/sqlite_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/utils.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:sweetalert/sweetalert.dart';
@@ -153,8 +152,8 @@ class TransactionViewState extends State<TransactionView> {
                   .textTheme
                   .display1
                   .copyWith(
-                  color: Color(0xff000000),
-                  fontSize: ScreenUtil(allowFontScaling: true).setSp(30),
+                  color: Colors.white,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -171,8 +170,8 @@ class TransactionViewState extends State<TransactionView> {
                   .textTheme
                   .display1
                   .copyWith(
-                  color: Color(0xff000000),
-                  fontSize: ScreenUtil(allowFontScaling: true).setSp(20),
+                  color: Colors.white,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -190,8 +189,8 @@ class TransactionViewState extends State<TransactionView> {
                   .textTheme
                   .display1
                   .copyWith(
-                color: Color(0xff000000),
-                fontSize: ScreenUtil(allowFontScaling: true).setSp(30),
+                color: Colors.white,
+                fontSize: 15,
               ),
             ),
 
@@ -206,8 +205,8 @@ class TransactionViewState extends State<TransactionView> {
                   .textTheme
                   .display1
                   .copyWith(
-                  color: Color(0xff000000),
-                  fontSize: ScreenUtil(allowFontScaling: true).setSp(70),
+                  color: Colors.white,
+                  fontSize: 60,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -223,8 +222,8 @@ class TransactionViewState extends State<TransactionView> {
                   .textTheme
                   .display1
                   .copyWith(
-                color: Color(0xff000000),
-                fontSize: ScreenUtil(allowFontScaling: true).setSp(30),
+                color: Colors.white,
+                fontSize: 25,
               ),
             ),
 
@@ -245,9 +244,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                            color: Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true).setSp(
-                                25),
+                            color: Colors.white,
+                            fontSize: 20,
                           )
                       ),
                       new Text(
@@ -257,10 +255,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                              color: Color(0xff000000),
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(
-                                  25),
+                              color: Colors.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold
                           )
                       ),
@@ -282,9 +278,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                            color: Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true).setSp(
-                                25),
+                            color: Colors.white,
+                            fontSize: 20,
                           )
                       ),
                       new Text(
@@ -294,10 +289,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                              color: Color(0xff000000),
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(
-                                  25),
+                              color: Colors.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold
                           )
                       ),
@@ -319,9 +312,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                            color: Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true).setSp(
-                                25),
+                            color: Colors.white,
+                            fontSize: 20,
                           )
                       ),
                       new Text(
@@ -331,10 +323,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                              color: Color(0xff000000),
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(
-                                  25),
+                              color: Colors.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold
                           )
                       ),
@@ -356,9 +346,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                            color: Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true).setSp(
-                                25),
+                            color: Colors.white,
+                            fontSize: 20,
                           )
                       ),
                       new Text(
@@ -369,10 +358,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                              color: Color(0xff000000),
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(
-                                  25),
+                              color: Colors.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold
                           )
                       ),
@@ -394,9 +381,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                            color: Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true).setSp(
-                                25),
+                            color: Colors.white,
+                            fontSize: 20,
                           )
                       ),
                       new Text(
@@ -407,10 +393,8 @@ class TransactionViewState extends State<TransactionView> {
                               .textTheme
                               .display1
                               .copyWith(
-                              color: Color(0xff000000),
-                              fontSize: ScreenUtil(allowFontScaling: true)
-                                  .setSp(
-                                  25),
+                              color: Colors.white,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold
                           )
                       ),
@@ -443,7 +427,7 @@ class TransactionViewState extends State<TransactionView> {
                         ));
                         future.then((void value) => Navigator.of(context).pop());
                       },
-                      color: const Color(0xff2d6bf9),
+                      color: Color.fromRGBO(102, 171, 0, 100),
                       child: Text(
                         "Edit",
                         style: Theme
@@ -454,8 +438,7 @@ class TransactionViewState extends State<TransactionView> {
                             color: useWhiteForeground(const Color(0xff2c4260))
                                 ? const Color(0xffffffff)
                                 : const Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true)
-                                .setSp(26)
+                            fontSize: 20
                         ),
                       ),
                     ),
@@ -495,7 +478,7 @@ class TransactionViewState extends State<TransactionView> {
                             }
                         );
                       },
-                      color: const Color(0xffff735a),
+                      color: Color.fromRGBO(102, 171, 0, 100),
                       child: Text(
                         "Delete",
                         style: Theme
@@ -506,8 +489,7 @@ class TransactionViewState extends State<TransactionView> {
                             color: useWhiteForeground(const Color(0xff2c4260))
                                 ? const Color(0xffffffff)
                                 : const Color(0xff000000),
-                            fontSize: ScreenUtil(allowFontScaling: true)
-                                .setSp(26)
+                            fontSize: 20
                         ),
                       ),
                     ),

@@ -154,7 +154,7 @@ class PageState extends State<TransactionsPage> {
                             (balance != null) ? balance : '0',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 17,
                               color: Constants.balanceTxtColor,
                             )
                         ),
@@ -278,21 +278,24 @@ class PageState extends State<TransactionsPage> {
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
-                          return new Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                transactionsWidget(
-                                  context: context,
-                                  transactionId: snapshot.data[index]
-                                      .transactionId,
-                                  type: snapshot.data[index].type,
-                                  name: snapshot.data[index].name,
-                                  date: snapshot.data[index].transactionDate,
-                                  amount: _numberFormat(
-                                      snapshot.data[index].amount),
-                                  textColor: Color(0xffffffff),
-                                ),
-                              ]);
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: new Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  transactionsWidget(
+                                    context: context,
+                                    transactionId: snapshot.data[index]
+                                        .transactionId,
+                                    type: snapshot.data[index].type,
+                                    name: snapshot.data[index].name,
+                                    date: snapshot.data[index].transactionDate,
+                                    amount: _numberFormat(
+                                        snapshot.data[index].amount),
+                                    textColor: Color(0xffffffff),
+                                  ),
+                                ]),
+                          );
                         }
                     )
                 );
@@ -313,77 +316,81 @@ class PageState extends State<TransactionsPage> {
     String amount, Color textColor}) {
     Color txColor = _switchType(type);
     return new Material(
-        color: Constants.bgColor,
-        child: new InkWell(
-            child: new ListTile(
-                contentPadding: new EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 0.0),
-                dense: true,
-                title: new RichText(
-                  textAlign: TextAlign.start,
-                  text: new TextSpan(
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Color(0xff000000),
-                    ),
-                    children: <TextSpan>[
-                      new TextSpan(
-                        text: '$name',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+        color: Color.fromRGBO(40, 40, 40, 100),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: new InkWell(
+              child: new ListTile(
+                  contentPadding: new EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 0.0),
+                  dense: true,
+                  title: new RichText(
+                    textAlign: TextAlign.start,
+                    text: new TextSpan(
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                      children: <TextSpan>[
+                        new TextSpan(
+                          text: '$name',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      new TextSpan(
-                          text: '\n$date'
-                      ),
-                    ],
-                  ),
-                ),
-                trailing: new RichText(
-                  textAlign: TextAlign.end,
-                  text: new TextSpan(
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: txColor,
-                    ),
-                    children: <TextSpan>[
-                      new TextSpan(
-                        text: '$amount',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        new TextSpan(
+                            text: '\n$date'
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )
-            ),
-            onTap: () {
-              Future<void> future = showModalBottomSheet<Null>(
-                  backgroundColor: Color(0xFF737373),
-                  context: context,
-                  builder: (BuildContext context) {
-                    return new Container(
-                        child: new Container(
-                            decoration: new BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: new BorderRadius.only(
-                                  topLeft: const Radius.circular(15.0),
-                                  topRight: const Radius.circular(15.0)
+                  trailing: new RichText(
+                    textAlign: TextAlign.end,
+                    text: new TextSpan(
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      children: <TextSpan>[
+                        new TextSpan(
+                          text: '$amount',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+              ),
+              onTap: () {
+                Future<void> future = showModalBottomSheet<Null>(
+                    backgroundColor: Color.fromRGBO(40, 40, 40, 100),
+                    context: context,
+                    builder: (BuildContext context) {
+                      return new Container(
+                          child: new Container(
+                              decoration: new BoxDecoration(
+                                color: Color.fromRGBO(40, 40, 40, 100),
+                                borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(15.0),
+                                    topRight: const Radius.circular(15.0)
+                                ),
                               ),
-                            ),
-                            child: new Padding(
-                              padding: const EdgeInsets.all(22.0),
-                              child: TransactionView(
-                                  transactionId: transactionId,
-                                  currency: _getCurrency()
-                              ),
-                            )
-                        )
-                    );
-                  }
-              );
-              future.then((void value) => fetchBalance());
-            }
+                              child: new Padding(
+                                padding: const EdgeInsets.all(22.0),
+                                child: TransactionView(
+                                    transactionId: transactionId,
+                                    currency: _getCurrency()
+                                ),
+                              )
+                          )
+                      );
+                    }
+                );
+                future.then((void value) => fetchBalance());
+              }
+          ),
         )
     );
   }

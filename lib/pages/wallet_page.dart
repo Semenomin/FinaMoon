@@ -356,7 +356,7 @@ class PageState extends State<BudgetPage> {
           text: new TextSpan(
             style: TextStyle(
               fontSize: 13,
-              color: Color.fromRGBO(40, 40, 40, 100),
+              color: Colors.white,
             ),
             children: <TextSpan>[
               new TextSpan(
