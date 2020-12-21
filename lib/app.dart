@@ -1,11 +1,9 @@
-import 'package:finamoonproject/repos/currency_repository.dart';
-import 'package:finamoonproject/repos/repository.dart';
+import 'package:finamoonproject/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'bloc/home/index.dart';
 import 'classes/localedelegate.dart';
-import 'index.dart';
 
 class MyApp extends StatelessWidget {
   final List<RepositoryProvider> repositories;

@@ -11,9 +11,8 @@ import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class TransactionsPage extends StatefulWidget {
-  TransactionsPage({Key key}): super(key: key);
+  TransactionsPage({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -36,8 +35,9 @@ class PageState extends State<TransactionsPage> {
 
   /// This method converts a number into currency format with two decimals
   String _numberFormat(value) {
-    return NumberFormat.currency(name: _getCurrency(), decimalDigits: 2).format(
-        value).toString();
+    return NumberFormat.currency(name: _getCurrency(), decimalDigits: 2)
+        .format(value)
+        .toString();
   }
 
   /// This method converts a type to its colors
@@ -82,8 +82,7 @@ class PageState extends State<TransactionsPage> {
   /// This method gets the current month's transactions from database
   Future<List<Transactions>> fetchTransactionsFromDatabase() async {
     var dbHelper = SqliteRepository();
-    Future<List<Transactions>> finances = dbHelper.getTransactions(
-        initialDate);
+    Future<List<Transactions>> finances = dbHelper.getTransactions(initialDate);
     return finances;
   }
 
@@ -104,9 +103,7 @@ class PageState extends State<TransactionsPage> {
     super.initState();
 
     /// This forces the orientation to be portrait up only
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     _initPreferences();
   }
@@ -133,31 +130,30 @@ class PageState extends State<TransactionsPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: headerWidget(context: context),
                   ),
+
                   /// Define a fixed height of size 10
                   SizedBox(height: 10.0),
+
                   /// Build Balance widget
                   new Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: new Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      color:  Color.fromRGBO(40, 40, 40, 100),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: Color.fromRGBO(40, 40, 40, 100),
                       child: new ListTile(
                         dense: true,
-                        title: new Text(
-                            'Balance',
+                        title: new Text('Balance',
                             style: TextStyle(
                               fontSize: 15,
                               color: Constants.balanceTxtColor,
-                            )
-                        ),
-                        subtitle: new Text(
-                            (balance != null) ? balance : '0',
+                            )),
+                        subtitle: new Text((balance != null) ? balance : '0',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
                               color: Constants.balanceTxtColor,
-                            )
-                        ),
+                            )),
                       ),
                     ),
                   ),
@@ -167,8 +163,7 @@ class PageState extends State<TransactionsPage> {
               ),
             )
           ],
-        )
-    );
+        ));
   }
 
   /// Header widget
@@ -179,54 +174,50 @@ class PageState extends State<TransactionsPage> {
           children: <Widget>[
             new Expanded(
                 child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    new Text(
-                      Constants.transactionPageTxt,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text(
+                  Constants.transactionPageTxt,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+                new SizedBox(height: 5.0),
+                new RichText(
+                  text: new TextSpan(
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
                     ),
-                    new SizedBox(height: 5.0),
-                    new RichText(
-                      text: new TextSpan(
+                    children: <TextSpan>[
+                      new TextSpan(
+                        text: DateFormat.MMMM("en_US").format(selectedDate),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      new TextSpan(
+                        text: ', ',
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.white,
                         ),
-                        children: <TextSpan>[
-                          new TextSpan(
-                            text: DateFormat.MMMM("en_US").format(selectedDate),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          new TextSpan(
-                            text: ', ',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          ),
-                          new TextSpan(
-                            text: DateFormat.y("en_US").format(selectedDate),
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
                       ),
-                    ),
-                  ],
-                )
-            ),
-
-
+                      new TextSpan(
+                        text: DateFormat.y("en_US").format(selectedDate),
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )),
             new Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-
                 /// Build calendar icon button to change months
                 new Container(
                   height: 35.0,
@@ -237,12 +228,10 @@ class PageState extends State<TransactionsPage> {
                     iconSize: 25,
                     onPressed: () {
                       showMonthPicker(
-                          context: context,
-                          lastDate: DateTime(DateTime
-                              .now()
-                              .year + 1, 9),
-                          initialDate: selectedDate ?? initialDate
-                      ).then((date) {
+                              context: context,
+                              lastDate: DateTime(DateTime.now().year + 1, 9),
+                              initialDate: selectedDate ?? initialDate)
+                          .then((date) {
                         if (date != null) {
                           setState(() {
                             selectedDate = date;
@@ -255,65 +244,66 @@ class PageState extends State<TransactionsPage> {
                     },
                   ),
                 )
-
               ],
             )
-
           ],
-        )
-    );
+        ));
   }
 
   /// Transactions widget
   Widget buildTransactions({@required BuildContext context}) {
     return new Flexible(
         child: new Container(
-          child: new FutureBuilder<List<Transactions>>(
-            future: fetchTransactionsFromDatabase(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return new SingleTouchRecognizerWidget(
-                    child: new ListView.builder(
-                        padding: const EdgeInsets.all(0.0),
-                        shrinkWrap: true,
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: new Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  transactionsWidget(
-                                    context: context,
-                                    transactionId: snapshot.data[index]
-                                        .transactionId,
-                                    type: snapshot.data[index].type,
-                                    name: snapshot.data[index].name,
-                                    date: snapshot.data[index].transactionDate,
-                                    amount: _numberFormat(
-                                        snapshot.data[index].amount),
-                                    textColor: Color(0xffffffff),
-                                  ),
-                                ]),
-                          );
-                        }
-                    )
-                );
-              } else if (snapshot.hasError) {
-                return new Text("${snapshot.error}");
-              }
-              return new Container(alignment: AlignmentDirectional.center,
-                child: new CircularProgressIndicator(),);
-            },
-          ),
-        )
-    );
+      child: new FutureBuilder<List<Transactions>>(
+        future: fetchTransactionsFromDatabase(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return new SingleTouchRecognizerWidget(
+                child: new ListView.builder(
+                    padding: const EdgeInsets.all(0.0),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              transactionsWidget(
+                                ctx: context,
+                                transactionId:
+                                    snapshot.data[index].transactionId,
+                                type: snapshot.data[index].type,
+                                name: snapshot.data[index].name,
+                                date: snapshot.data[index].transactionDate,
+                                amount:
+                                    _numberFormat(snapshot.data[index].amount),
+                                textColor: Color(0xffffffff),
+                              ),
+                            ]),
+                      );
+                    }));
+          } else if (snapshot.hasError) {
+            return new Text("${snapshot.error}");
+          }
+          return new Container(
+            alignment: AlignmentDirectional.center,
+            child: new CircularProgressIndicator(),
+          );
+        },
+      ),
+    ));
   }
 
   /// Single transaction widget
-  Widget transactionsWidget({@required BuildContext context,
-    int transactionId, String type, String name, String date,
-    String amount, Color textColor}) {
+  Widget transactionsWidget(
+      {@required BuildContext ctx,
+      int transactionId,
+      String type,
+      String name,
+      String date,
+      String amount,
+      Color textColor}) {
     Color txColor = _switchType(type);
     return new Material(
         color: Color.fromRGBO(40, 40, 40, 100),
@@ -322,8 +312,8 @@ class PageState extends State<TransactionsPage> {
           padding: const EdgeInsets.all(8.0),
           child: new InkWell(
               child: new ListTile(
-                  contentPadding: new EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 0.0),
+                  contentPadding:
+                      new EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
                   dense: true,
                   title: new RichText(
                     textAlign: TextAlign.start,
@@ -339,9 +329,7 @@ class PageState extends State<TransactionsPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        new TextSpan(
-                            text: '\n$date'
-                        ),
+                        new TextSpan(text: '\n$date'),
                       ],
                     ),
                   ),
@@ -361,8 +349,7 @@ class PageState extends State<TransactionsPage> {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
               onTap: () {
                 Future<void> future = showModalBottomSheet<Null>(
                     backgroundColor: Color.fromRGBO(40, 40, 40, 100),
@@ -374,25 +361,19 @@ class PageState extends State<TransactionsPage> {
                                 color: Color.fromRGBO(40, 40, 40, 100),
                                 borderRadius: new BorderRadius.only(
                                     topLeft: const Radius.circular(15.0),
-                                    topRight: const Radius.circular(15.0)
-                                ),
+                                    topRight: const Radius.circular(15.0)),
                               ),
                               child: new Padding(
                                 padding: const EdgeInsets.all(22.0),
                                 child: TransactionView(
-                                    transactionId: transactionId,
-                                    currency: _getCurrency()
+                                  transactionId: transactionId,
+                                  currency: _getCurrency(),
+                                  ctx: ctx,
                                 ),
-                              )
-                          )
-                      );
-                    }
-                );
+                              )));
+                    });
                 future.then((void value) => fetchBalance());
-              }
-          ),
-        )
-    );
+              }),
+        ));
   }
-
 }

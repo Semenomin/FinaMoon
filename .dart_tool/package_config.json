@@ -254,6 +254,18 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "flutter_screen_lock",
+      "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screen_lock-1.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "flutter_screenutil",
       "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-0.5.3",
       "packageUri": "lib/",
@@ -378,6 +390,12 @@
       "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.7"
+    },
+    {
+      "name": "local_auth",
+      "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/local_auth-0.6.3+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "logging",
@@ -740,7 +758,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-06T21:45:29.960198Z",
+  "generated": "2020-12-21T15:59:14.222117Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

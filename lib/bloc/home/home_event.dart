@@ -15,21 +15,28 @@ class OpenCurrencyPageEvent extends HomeEvent {
   }
 }
 
-class OpenWalletPageEvent extends HomeEvent{
+class OpenWalletPageEvent extends HomeEvent {
   @override
   Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
     yield WalletPageState("BUDGET");
   }
 }
 
-class OpenChartsPageEvent extends HomeEvent{
+class OpenChartsPageEvent extends HomeEvent {
   @override
   Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
     yield ChartsPageState("CHARTS");
   }
 }
 
-
+class OpenEditTransactionPageEvent extends HomeEvent {
+  final int transactionId;
+  OpenEditTransactionPageEvent({this.transactionId});
+  @override
+  Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
+    yield EditTransactionPageState(transactionId);
+  }
+}
 
 class OpenChatScreenEvent extends HomeEvent {
   final HomeState state;
@@ -48,4 +55,10 @@ class OpenSettingsScreenEvent extends HomeEvent {
   }
 }
 
-
+class WelcomeStateEvent extends HomeEvent{
+  @override
+  Stream<HomeState> applyAsync({HomeState currentState, HomeBloc bloc}) async* {
+    yield AuthScreenState();
+    yield WalletPageState("WALLET");
+  }
+}

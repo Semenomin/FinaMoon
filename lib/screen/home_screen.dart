@@ -1,4 +1,5 @@
 import 'package:finamoonproject/bloc/home/index.dart';
+import 'package:finamoonproject/components/transaction/transaction.new.page.dart';
 import 'package:finamoonproject/pages/charts_page.dart';
 import 'package:finamoonproject/pages/currency_page.dart';
 import 'package:finamoonproject/pages/index.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_screen_lock/lock_screen.dart';
+import 'package:local_auth/local_auth.dart';
 
 List<NavigationRailDestination> destinations = [
   NavigationRailDestination(icon: Icon(Icons.menu), label: Text("MENU")),
@@ -35,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     initData();
+    BlocProvider.of<HomeBloc>(context).add(WelcomeStateEvent());
     super.initState();
   }
 
@@ -51,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocListener<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state is ChatScreenState) buildShowModalBottomSheet(context);
+        if (state is AuthScreenState) buildAuthPage(context);
       },
       child: SafeArea(
         child: Scaffold(
@@ -115,6 +120,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 case ChartsPageState:
                                   return ChartsPage();
                                   break;
+                                case EditTransactionPageState:
+                                  return TransactionNewPage(
+                                      transactionId: state.transactionId);
+                                  break;
                                 default:
                                   return Container(
                                       child: CircularProgressIndicator());
@@ -129,6 +138,28 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             )),
       ),
+    );
+  }
+
+  void buildAuthPage(BuildContext context){
+    showLockScreen(
+      context: context,
+      correctString: '1234',
+      canBiometric: true,
+      showBiometricFirst: true,
+      biometricAuthenticate: (context) async {
+        final localAuth = LocalAuthentication();
+        final didAuthenticate =
+        await localAuth.authenticateWithBiometrics(
+            localizedReason: 'Please authenticate');
+        if (didAuthenticate) {
+          BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
+        }
+        return false;
+      },
+      onUnlocked: () {
+        BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
+      },
     );
   }
 

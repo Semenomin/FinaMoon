@@ -141,9 +141,7 @@ class PageState extends State<BudgetPage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: PageView(children: [
-        PageView(
-            scrollDirection: Axis.vertical,
-            children: [
+        PageView(scrollDirection: Axis.vertical, children: [
           Padding(
             padding: const EdgeInsets.only(right: 5),
             child: Container(
@@ -153,10 +151,7 @@ class PageState extends State<BudgetPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 5),
-            child: Container(
-              decoration: Decorations.buildBoxDecoration(),
-              child: TransactionNewPage(),
-            ),
+            child: TransactionNewPage(),
           ),
         ]),
         Padding(
@@ -214,30 +209,28 @@ class PageState extends State<BudgetPage> {
   /// Header widget
   Widget headerWidget({@required BuildContext context}) {
     return new Container(
-        child: new Expanded(
-            flex: 4,
-            child: new RichText(
-              text: new TextSpan(
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-                children: <TextSpan>[
-                  new TextSpan(
-                    text: DateFormat.MMMM("en_US").format(DateTime.now()),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  new TextSpan(
-                    text: ', ',
-                  ),
-                  new TextSpan(
-                    text: DateFormat.y("en_US").format(DateTime.now()),
-                  ),
-                ],
-              ),
-            )));
+        child: new RichText(
+      text: new TextSpan(
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
+        children: <TextSpan>[
+          new TextSpan(
+            text: DateFormat.MMMM("en_US").format(DateTime.now()),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          new TextSpan(
+            text: ', ',
+          ),
+          new TextSpan(
+            text: DateFormat.y("en_US").format(DateTime.now()),
+          ),
+        ],
+      ),
+    ));
   }
 
   /// Overview widget
