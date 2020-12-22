@@ -1,4 +1,4 @@
-#Mon Dec 21 20:47:08 MSK 2020
+#Tue Dec 22 01:14:21 MSK 2020
 base.0=/Users/semenomin/Documents/GitHub/FinaMoon/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

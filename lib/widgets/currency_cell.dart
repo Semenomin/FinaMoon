@@ -1,5 +1,4 @@
 import 'package:finamoonproject/model/index.dart';
-import 'package:finamoonproject/repos/currency_repository.dart';
 import 'package:finamoonproject/repos/hive_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,11 +7,12 @@ import 'package:select_dialog/select_dialog.dart';
 
 // ignore: must_be_immutable
 class CurrencyCell extends StatefulWidget {
-  CurrencyCell({Key key, this.color, this.name,this.index})
+  CurrencyCell({Key key, this.color, this.name,this.index,this.controller})
       : super(key: key);
   Color color;
   String name;
   int index;
+  TextEditingController controller;
   @override
   _CurrencyCellState createState() => _CurrencyCellState(
         color: color,
@@ -46,10 +46,8 @@ class _CurrencyCellState extends State<CurrencyCell> {
                   horizontal: 20.0,
                 ),
                 child: TextFormField(
+                  controller: widget.controller,
                   cursorColor: Colors.white12,
-                  onChanged: (str) {
-                    //TODO getcur
-                  },
                   keyboardType: TextInputType.number,
                   style: TextStyle(
                     fontSize: 62,

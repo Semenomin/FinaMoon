@@ -525,7 +525,7 @@
     },
     {
       "name": "provider",
-      "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+2",
+      "rootUri": "file:///Users/semenomin/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/provider-4.3.2+3",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     },
@@ -758,7 +758,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-21T15:59:14.222117Z",
+  "generated": "2020-12-21T19:44:17.847742Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

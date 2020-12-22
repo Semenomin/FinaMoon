@@ -28,7 +28,8 @@ class Currency {
       }
       final hiveRepository = RepositoryProvider.of<HiveRepository>(context);
       Currency currencyTo = await hiveRepository.getCurrency(to);
-      return (value * currencyTo.rate) / this.rate;
+      //TODO FIX
+      return (value * 2.5) / this.rate;
     } catch (ex) {
       print(ex);
     }

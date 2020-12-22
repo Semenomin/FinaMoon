@@ -11,6 +11,12 @@ class HiveRepository extends Repository{
     list[index] = box.get(value);
   }
 
+  Future<List<Currency>> getFavoriteCurrencies() async{
+    var boxList = await Hive.openBox<List<Currency>>('currenciesBox');
+    List<Currency> list = boxList.get('favorite');
+    return list;
+  }
+
   void initOrUpdateCurrencies(List<Currency> list) async {
     var listOfCur = <Currency>[];
     var box = await Hive.openBox<Currency>('currenciesBox');

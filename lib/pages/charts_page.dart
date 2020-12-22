@@ -29,7 +29,7 @@ class _PageState extends State<ChartsPage> {
   var balance, income, expenses, savings;
   Map<String, double> dataMap = Map();
   Map<String, double> dataMapCategories = Map();
-  List<Color> colorList = [Colors.deepOrange, Colors.indigo, Colors.pink];
+  List<Color> colorList = [Colors.black54, Colors.black26, Colors.black12];
 
   /// This method gets the current currency
   String _getCurrency() {
@@ -312,6 +312,7 @@ class _PageState extends State<ChartsPage> {
   Widget categoriesGraph({@required BuildContext context}) {
     /// Builds graph pie chart from dataMapCategories
     return new PieChart(
+      colorList: [Colors.white70,Colors.white54,Colors.white24],
       dataMap: dataMapCategories,
       animationDuration: Duration(milliseconds: 800),
       chartLegendSpacing: 32.0,
@@ -320,7 +321,7 @@ class _PageState extends State<ChartsPage> {
       showChartValuesInPercentage: true,
       showChartValues: true,
       showChartValuesOutside: false,
-      chartValueBackgroundColor: Colors.grey[200],
+      chartValueBackgroundColor: Colors.black,
       showLegends: true,
       legendPosition: LegendPosition.right,
       decimalPlaces: 0,

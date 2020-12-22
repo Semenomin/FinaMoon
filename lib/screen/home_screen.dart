@@ -143,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void buildAuthPage(BuildContext context){
     showLockScreen(
+      canCancel: false,
       context: context,
       correctString: '1234',
       canBiometric: true,
@@ -153,9 +154,12 @@ class _HomeScreenState extends State<HomeScreen> {
         await localAuth.authenticateWithBiometrics(
             localizedReason: 'Please authenticate');
         if (didAuthenticate) {
-          BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
+          BlocProvider.of<HomeBloc>(this.context).add(OpenWalletPageEvent());
+          return true;
         }
-        return false;
+        else{
+          return false;
+        }
       },
       onUnlocked: () {
         BlocProvider.of<HomeBloc>(context).add(OpenWalletPageEvent());
