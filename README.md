@@ -3,10 +3,11 @@
 Finance manager on Linux + Android + Ios
 
 ## Technologies
-Flutter
-DialogFlow
-Sqlite
-SharedPreferenses
+Flutter,
+DialogFlow,
+Sqlite,
+Hive,
+SharedPreferenses,
 Bloc + Provider
 
 # Description
